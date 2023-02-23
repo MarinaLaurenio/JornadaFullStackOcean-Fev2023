@@ -5,7 +5,8 @@ const items = [
   {
   _id: '1234',
   nome: 'Rick Sanchez',
-  imagemUrl: 'https://i.pinimg.com/originals/6e/51/32/6e5132a90812ad1abf3711135a5cf406.png'
+  imagemUrl: 'https://i.pinimg.com/originals/6e/51/32/6e5132a90812ad1abf3711135a5cf406.png',
+  tags: ["Status: Vivo", "Espécie: Humana", "Origem: Terra C-137"],
 },
 {
   _id: '5678',
@@ -21,12 +22,15 @@ const items = [
 
 
 function ReadAll(){
-  return <div className="ReadAll">
-    {items.map(function (item) {
-      return <Card key={'card-' + item._id} item={item}/>
-    })}
-  </div>
-  //O react pede para que cada componente da minha lista tenha um identificador único para que ele possa identificar 
+  return (
+    <div className="ReadAll">
+      {items.map(function (item) {
+        // console.log(item);
+        // Key -> card-1234
+        return <Card key={"card-" + item._id} item={item} />;
+      })}
+    </div>
+  );
 }
 
 export default ReadAll;
