@@ -1,27 +1,67 @@
 import "./ReadAll.css";
 import Card from "../Card/Card";
+import { useEffect, useState } from "react";
 
-const items = [
+// Mock Items (exatamente a mesma estrutura que o back traria)
+// Isso facilita o trabalho aqui no Front, para conseguir estruturar
+// comportamento, sem precisar depender do back para receber dados
+const itemsMock = [
   {
-  _id: '1234',
-  nome: 'Rick Sanchez',
-  imagemUrl: 'https://i.pinimg.com/originals/6e/51/32/6e5132a90812ad1abf3711135a5cf406.png',
-  tags: ["Status: Vivo", "Espécie: Humana", "Origem: Terra C-137"],
-},
-{
-  _id: '5678',
-  nome: 'Morty Smith',
-  imagemUrl: 'https://w7.pngwing.com/pngs/874/965/png-transparent-morty-smith-rick-sanchez-squanchy-adult-swim-homo-sapiens-others-child-face-hand.png'
-},
-{
-  _id: '91011',
-  nome: 'Beth Smith',
-  imagemUrl: 'https://static.wikia.nocookie.net/ipdkverse/images/c/cb/Beth_Smith_1.png'
-}
-]
+    _id: "63ee1e0b18f2b9a93da8435a",
+    nome: "Rick Sanchez",
+    imagemUrl: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+    tags: ["Status: Vivo", "Espécie: Humana", "Origem: Terra C-137"],
+  },
+  {
+    _id: "63ef87c74522de2944ab1fa8",
+    nome: "Morty Smith",
+    imagemUrl: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+  },
+  {
+    _id: "63ef87cc4522de2944ab1fa9",
+    nome: "Summer Smith",
+    imagemUrl: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+  },
+  {
+    _id: "63ef87d44522de2944ab1faa",
+    nome: "Beth Smith",
+    imagemUrl: "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+  },
+  {
+    _id: "63ef87e24522de2944ab1fab",
+    nome: "Jerry Smith",
+    imagemUrl: "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
+  },
+];
 
 
-function ReadAll(){
+function ReadAll() {
+  // useState retorna 2 coisas:
+  // 1: o valor do estado
+  // 2: a função que atualiza o valor do estado
+  //   const estadoItems = useState([]);
+  //   const items = estadoItems[0];
+  //   const setItems = estadoItems[1];
+  const [items, setItems] = useState([]);
+
+  // Realizar requisição para backend obtendo a lista de itens
+  async function realizarRequisicao() {
+    const url = "http://localhost:3000/item";
+    const response = await fetch(url);
+    const data = await response.json();
+
+    setItems(data);
+  }
+
+  // UseEffect
+  // 1: uma função que será executada
+  // 2: uma lista de dependências
+  useEffect(function () {
+    realizarRequisicao();
+  }, []);
+
+  //   console.log(67, items);
+
   return (
     <div className="ReadAll">
       {items.map(function (item) {
