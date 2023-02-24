@@ -16,6 +16,7 @@ const itemsMock = [
     _id: "63ef87c74522de2944ab1fa8",
     nome: "Morty Smith",
     imagemUrl: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+    ["Status: Vivo", "Espécie: Humana", "Origem: Terra C-137"],
   },
   {
     _id: "63ef87cc4522de2944ab1fa9",
